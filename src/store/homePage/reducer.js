@@ -26,7 +26,7 @@ const initialState = [
 ];
 
 export default function homePageSliceReducer(state = initialState, action) {
-  // const newState = { ...state };
+  let newState = [...state];
 
   // switch (action.type) {
   //   case "ADD_TO_CART": {
@@ -40,8 +40,13 @@ export default function homePageSliceReducer(state = initialState, action) {
 
   // return newState;
   switch (action.type) {
+    case "SET_PETS": {
+      newState = action.payload;
+      break;
+    }
     default: {
       return state;
     }
   }
+  return newState;
 }
