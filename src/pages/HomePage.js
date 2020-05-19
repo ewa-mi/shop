@@ -5,18 +5,13 @@ import { selectPetType } from "../store/homePage/selectors.js";
 
 export default function HomePage() {
   const settingPets = useSelector(selectSettingPets);
-  // console.log("What is settingPets?", settingPets);
   const filterSelectPetType = useSelector(selectPetType);
-
+  const [petPriceFilter, setPetPriceFilter] = useState(0);
   const [petType, setPetType] = useState("bird");
-  console.log("what is petType?", petType);
 
-  const filterPet = settingPets.homePage.filter(
-    (pet) =>
-      // console.log("What to filter?", pet.id);
-      pet.type === petType
-  );
-  // console.log("What is filterPet?", filterPet);
+  const filterPet = settingPets.homePage.filter((pet) => pet.type === petType);
+  const types = filterSelectPetType.map((pet) => pet.type);
+  const uniqueTypes = [...new Set(types)];
 
   return (
     <div>
@@ -24,11 +19,10 @@ export default function HomePage() {
       <h2>
         Filer by:
         <select value={petType} onChange={(e) => setPetType(e.target.value)}>
-          {filterSelectPetType.map((type) => {
-            // console.log("What are the types?", type.type);
+          {uniqueTypes.map((type, index) => {
             return (
-              <option key={type.id} value={type.type}>
-                {type.type}
+              <option key={index} value={type}>
+                {type}
               </option>
             );
           })}
@@ -36,11 +30,10 @@ export default function HomePage() {
       </h2>
       <>
         {filterPet.map((pet) => {
-          // console.log("Check pet:", pet.animal);
           return (
             <div key={pet.id}>
               <div>
-                {pet.animal} {pet.price} Type: {pet.type}
+                {pet.animal} ${pet.price} Type: {pet.type}
               </div>
             </div>
           );
