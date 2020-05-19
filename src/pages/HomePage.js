@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectState } from "../store/homePage/selectors.js";
 import { setPets } from "../store/homePage/actions.js";
 import "./HomePage.css";
@@ -10,9 +10,11 @@ export default function HomePage() {
   const filterPet = state.filter((pet) => pet.type === petType);
   const types = state.map((pet) => pet.type);
   const uniqueTypes = [...new Set(types)];
-  const dispatch = useDispatch();
+  const [filterByPrice, setFilterByPrice] = useState([]);
 
-  const list = state.map((pet) => (
+  const result = filterByPrice.length ? filterByPrice : state;
+
+  const list = result.map((pet) => (
     <div key={pet.id}>
       <div className="animalItself">
         {" "}
@@ -21,12 +23,12 @@ export default function HomePage() {
     </div>
   ));
 
-  const filterByPrice = () => {
+  const handleFilterByPrice = () => {
     const animalsByPrice = state.sort(function (a, b) {
       return a.price - b.price;
     });
 
-    dispatch(setPets(animalsByPrice));
+    setFilterByPrice(animalsByPrice);
   };
 
   return (
@@ -59,7 +61,7 @@ export default function HomePage() {
       <br></br>
       <h2>All pets in our shop:</h2>
       <div className="listByPrice">{list}</div>
-      <button onClick={filterByPrice}>filter by price</button>
+      <button onClick={handleFilterByPrice}>filter by price</button>
     </div>
   );
 }
