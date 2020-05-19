@@ -1,25 +1,25 @@
 const initialState = {
   parrot: {
     id: 1,
-    animal: parrot,
+    animal: "parrot",
     price: "$10",
     type: "bird",
   },
   ferret: {
     id: 2,
-    animal: ferret,
+    animal: "ferret",
     price: "$40",
     type: "rodent",
   },
   gecko: {
     id: 3,
-    animal: gecko,
+    animal: "gecko",
     price: "$55",
     type: "lizard",
   },
   rabbit: {
     id: 4,
-    animal: rabbit,
+    animal: "rabbit",
     price: "$38",
     type: "rodent",
   },
@@ -33,5 +33,10 @@ export default function homePageSliceReducer(state = initialState, action) {
       newState.adding = action.payload;
       break;
     }
+    default: {
+      // do nothing
+    }
   }
+
+  return newState;
 }
