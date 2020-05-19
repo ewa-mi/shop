@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import someFeatureReducer from "./someFeature/reducer";
+import homePageSliceReducer from "./homePage/reducer";
 
 const reducer = combineReducers({
-  someFeature: someFeatureReducer,
+  homePage: homePageSliceReducer,
   // etc.
 });
 
