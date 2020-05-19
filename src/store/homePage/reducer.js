@@ -25,7 +25,7 @@ const initialState = {
   },
 };
 
-export default function reducer(state = initialState, action) {
+export default function homePageSliceReducer(state = initialState, action) {
   const newState = { ...state };
 
   switch (action.type) {
