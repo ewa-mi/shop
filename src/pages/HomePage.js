@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectState } from "../store/homePage/selectors.js";
-import { setPets } from "../store/homePage/actions.js";
 import "./HomePage.css";
 
 export default function HomePage() {
