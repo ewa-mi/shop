@@ -1,7 +1,3 @@
-export const selectSettingPets = (state) => {
-  return state;
-};
-
-export const selectPetType = (state) => {
+export const selectState = (state) => {
   return state.homePage;
 };

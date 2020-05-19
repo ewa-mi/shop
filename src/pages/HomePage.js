@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { selectSettingPets } from "../store/homePage/selectors.js";
-import { selectPetType } from "../store/homePage/selectors.js";
+import { selectState } from "../store/homePage/selectors.js";
 
 export default function HomePage() {
-  const settingPets = useSelector(selectSettingPets);
-  const filterSelectPetType = useSelector(selectPetType);
+  const state = useSelector(selectState);
   const [petPriceFilter, setPetPriceFilter] = useState(0);
   const [petType, setPetType] = useState("bird");
 
-  const filterPet = settingPets.homePage.filter((pet) => pet.type === petType);
-  const types = filterSelectPetType.map((pet) => pet.type);
+  const filterPet = state.filter((pet) => pet.type === petType);
+  const types = state.map((pet) => pet.type);
   const uniqueTypes = [...new Set(types)];
 
   return (
