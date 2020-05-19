@@ -2,25 +2,25 @@ const initialState = [
   {
     id: 1,
     animal: "parrot",
-    price: "$10",
+    price: 10,
     type: "bird",
   },
   {
     id: 2,
     animal: "ferret",
-    price: "$40",
+    price: 40,
     type: "rodent",
   },
   {
     id: 3,
     animal: "gecko",
-    price: "$55",
+    price: 55,
     type: "lizard",
   },
   {
     id: 4,
     animal: "rabbit",
-    price: "$38",
+    price: 38,
     type: "rodent",
   },
 ];
