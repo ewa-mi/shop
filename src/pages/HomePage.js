@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectState } from "../store/homePage/selectors.js";
 import "./HomePage.css";
+import { addToCart } from "../store/homePage/actions";
 
 export default function HomePage(props) {
   const state = useSelector(selectState);
+  const dispatch = useDispatch(); //dispatch function to store
   const [petType, setPetType] = useState("bird");
   const filterPet = state.filter((pet) => pet.type === petType);
   const types = state.map((pet) => pet.type);
@@ -21,18 +23,13 @@ export default function HomePage(props) {
     setFilterByPrice(animalsByPrice);
   };
 
-  const basket = (
-    <button onClick={() => props.setAmountInBasket(props.amountInBasket + 1)}>
-      add to cart
-    </button>
-  );
-
   const list = result.map((pet) => (
     <div key={pet.id}>
       <div className="animalItself">
         {" "}
         {pet.animal} ${pet.price} Type:{pet.type} <br></br>
-        {basket}
+        {/* 1. We have to use dispatch to access the REDUX store */}
+        <button onClick={() => dispatch(addToCart(pet))}>add to cart</button>
       </div>
     </div>
   ));
@@ -60,7 +57,9 @@ export default function HomePage(props) {
               <div className="animalItself">
                 {pet.animal} ${pet.price} Type: {pet.type}
                 <br></br>
-                {basket}
+                <button onClick={() => dispatch(addToCart(pet))}>
+                  add to cart
+                </button>
               </div>
             </div>
           );
