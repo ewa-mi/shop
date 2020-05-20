@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectState } from "../store/homePage/selectors.js";
 import "./HomePage.css";
+import { Link } from "react-router-dom";
 
 export default function HomePage(props) {
   const state = useSelector(selectState);
@@ -32,7 +33,11 @@ export default function HomePage(props) {
       <div className="animalItself">
         {" "}
         {pet.animal} ${pet.price} Type:{pet.type} <br></br>
+        <Link key={state.id} to={`/PetPage/${state.id}`}>
+          <p>details</p>
+        </Link>
         {basket}
+        <br></br>
       </div>
     </div>
   ));
@@ -60,6 +65,9 @@ export default function HomePage(props) {
               <div className="animalItself">
                 {pet.animal} ${pet.price} Type: {pet.type}
                 <br></br>
+                <Link key={state.id} to={`/PetPage/${state.id}`}>
+                  <p>details</p>
+                </Link>
                 {basket}
               </div>
             </div>
