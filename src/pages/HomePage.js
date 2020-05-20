@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { selectState } from "../store/homePage/selectors.js";
 import "./HomePage.css";
 
-export default function HomePage() {
+export default function HomePage(props) {
   const state = useSelector(selectState);
   const [petType, setPetType] = useState("bird");
   const filterPet = state.filter((pet) => pet.type === petType);
@@ -13,15 +13,6 @@ export default function HomePage() {
 
   const result = filterByPrice.length ? filterByPrice : state;
 
-  const list = result.map((pet) => (
-    <div key={pet.id}>
-      <div className="animalItself">
-        {" "}
-        {pet.animal} ${pet.price} Type:{pet.type}{" "}
-      </div>
-    </div>
-  ));
-
   const handleFilterByPrice = () => {
     const animalsByPrice = state.sort(function (a, b) {
       return a.price - b.price;
@@ -29,6 +20,22 @@ export default function HomePage() {
 
     setFilterByPrice(animalsByPrice);
   };
+
+  const basket = (
+    <button onClick={() => props.setAmountInBasket(props.amountInBasket + 1)}>
+      add to cart
+    </button>
+  );
+
+  const list = result.map((pet) => (
+    <div key={pet.id}>
+      <div className="animalItself">
+        {" "}
+        {pet.animal} ${pet.price} Type:{pet.type} <br></br>
+        {basket}
+      </div>
+    </div>
+  ));
 
   return (
     <div className="entireHome">
@@ -52,6 +59,8 @@ export default function HomePage() {
             <div key={pet.id}>
               <div className="animalItself">
                 {pet.animal} ${pet.price} Type: {pet.type}
+                <br></br>
+                {basket}
               </div>
             </div>
           );

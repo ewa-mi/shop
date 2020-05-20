@@ -1,11 +1,12 @@
 import React from "react";
-import { BrowserRouter as Switch, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Cart from "../pages/Cart.js";
+import "./NavBar.css";
 
-export default function NavBar() {
+export default function NavBar(props) {
   return (
     <div>
-      <nav>
-        <br />
+      <nav className="menu">
         <NavLink
           activeStyle={{
             fontWeight: "bold",
@@ -16,8 +17,8 @@ export default function NavBar() {
         >
           Awesome Pet Shop
         </NavLink>
+        <Cart amountInBasket={props.amountInBasket} />
       </nav>
-      <br />
       <hr />
     </div>
   );
