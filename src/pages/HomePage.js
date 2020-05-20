@@ -7,7 +7,6 @@ import { addToCart } from "../store/homePage/actions";
 
 import { Link } from "react-router-dom";
 
-
 export default function HomePage(props) {
   const state = useSelector(selectState);
   const dispatch = useDispatch(); //dispatch function to store
@@ -32,16 +31,12 @@ export default function HomePage(props) {
       <div className="animalItself">
         {" "}
         {pet.animal} ${pet.price} Type:{pet.type} <br></br>
-
         {/* 1. We have to use dispatch to access the REDUX store */}
         <button onClick={() => dispatch(addToCart(pet))}>add to cart</button>
-
-        <Link key={state.id} to={`/PetPage/${state.id}`}>
+        <Link key={state.id} to={`/PetPage/${pet.id}`}>
           <p>details</p>
         </Link>
-        {basket}
         <br></br>
-
       </div>
     </div>
   ));
@@ -69,16 +64,12 @@ export default function HomePage(props) {
               <div className="animalItself">
                 {pet.animal} ${pet.price} Type: {pet.type}
                 <br></br>
-
                 <button onClick={() => dispatch(addToCart(pet))}>
                   add to cart
                 </button>
-
-                <Link key={state.id} to={`/PetPage/${state.id}`}>
+                <Link key={state.id} to={`/PetPage/${pet.id}`}>
                   <p>details</p>
                 </Link>
-                {basket}
-
               </div>
             </div>
           );
